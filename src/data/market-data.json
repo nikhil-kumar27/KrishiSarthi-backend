@@ -1,0 +1,370 @@
+{
+  "marketData": [
+    {
+      "state": "Punjab",
+      "crops": [
+        {
+          "crop": "Wheat",
+          "observations": [
+            {"date":"2026-06-01","arrivalQuantity":10000,"soldQuantity":8500,"modalPrice":2200},
+            {"date":"2026-06-08","arrivalQuantity":9800,"soldQuantity":8500,"modalPrice":2240},
+            {"date":"2026-06-15","arrivalQuantity":9500,"soldQuantity":8400,"modalPrice":2280},
+            {"date":"2026-06-22","arrivalQuantity":8500,"soldQuantity":7900,"modalPrice":2320}
+          ]
+        },
+        {
+          "crop": "Rice",
+          "observations": [
+            {"date":"2026-06-01","arrivalQuantity":11000,"soldQuantity":8800,"modalPrice":2450},
+            {"date":"2026-06-08","arrivalQuantity":10800,"soldQuantity":9000,"modalPrice":2480},
+            {"date":"2026-06-15","arrivalQuantity":10500,"soldQuantity":9200,"modalPrice":2510},
+            {"date":"2026-06-22","arrivalQuantity":9800,"soldQuantity":9100,"modalPrice":2550}
+          ]
+        },
+        {
+          "crop": "Maize",
+          "observations": [
+            {"date":"2026-06-01","arrivalQuantity":8500,"soldQuantity":6800,"modalPrice":2050},
+            {"date":"2026-06-08","arrivalQuantity":8200,"soldQuantity":6700,"modalPrice":2070},
+            {"date":"2026-06-15","arrivalQuantity":8000,"soldQuantity":6900,"modalPrice":2100},
+            {"date":"2026-06-22","arrivalQuantity":7600,"soldQuantity":7000,"modalPrice":2140}
+          ]
+        },
+        {
+          "crop": "Sugarcane",
+          "observations": [
+            {"date":"2026-06-01","arrivalQuantity":12000,"soldQuantity":10200,"modalPrice":3400},
+            {"date":"2026-06-08","arrivalQuantity":11800,"soldQuantity":10100,"modalPrice":3420},
+            {"date":"2026-06-15","arrivalQuantity":11500,"soldQuantity":10000,"modalPrice":3450},
+            {"date":"2026-06-22","arrivalQuantity":11000,"soldQuantity":9900,"modalPrice":3490}
+          ]
+        },
+        {
+          "crop": "Potato",
+          "observations": [
+            {"date":"2026-06-01","arrivalQuantity":9000,"soldQuantity":7200,"modalPrice":1800},
+            {"date":"2026-06-08","arrivalQuantity":8800,"soldQuantity":7100,"modalPrice":1830},
+            {"date":"2026-06-15","arrivalQuantity":8500,"soldQuantity":7000,"modalPrice":1870},
+            {"date":"2026-06-22","arrivalQuantity":8000,"soldQuantity":6900,"modalPrice":1910}
+          ]
+        },
+        {
+          "crop": "Cotton",
+          "observations": [
+            {"date":"2026-06-01","arrivalQuantity":7000,"soldQuantity":5600,"modalPrice":6800},
+            {"date":"2026-06-08","arrivalQuantity":6800,"soldQuantity":5500,"modalPrice":6850},
+            {"date":"2026-06-15","arrivalQuantity":6500,"soldQuantity":5400,"modalPrice":6910},
+            {"date":"2026-06-22","arrivalQuantity":6200,"soldQuantity":5350,"modalPrice":6980}
+          ]
+        },
+        {
+          "crop": "Mustard",
+          "observations": [
+            {"date":"2026-06-01","arrivalQuantity":6000,"soldQuantity":4700,"modalPrice":5400},
+            {"date":"2026-06-08","arrivalQuantity":5800,"soldQuantity":4650,"modalPrice":5440},
+            {"date":"2026-06-15","arrivalQuantity":5600,"soldQuantity":4600,"modalPrice":5480},
+            {"date":"2026-06-22","arrivalQuantity":5300,"soldQuantity":4500,"modalPrice":5530}
+          ]
+        },
+        {
+          "crop": "Sunflower",
+          "observations": [
+            {"date":"2026-06-01","arrivalQuantity":5000,"soldQuantity":3900,"modalPrice":5700},
+            {"date":"2026-06-08","arrivalQuantity":4900,"soldQuantity":3850,"modalPrice":5750},
+            {"date":"2026-06-15","arrivalQuantity":4700,"soldQuantity":3800,"modalPrice":5810},
+            {"date":"2026-06-22","arrivalQuantity":4500,"soldQuantity":3750,"modalPrice":5880}
+          ]
+        }
+      ]
+    },
+    {
+      "state": "Bihar",
+      "crops": [
+        {
+          "crop": "Wheat",
+          "observations": [
+            {"date":"2026-06-01","arrivalQuantity":9000,"soldQuantity":7200,"modalPrice":2250},
+            {"date":"2026-06-08","arrivalQuantity":8800,"soldQuantity":7200,"modalPrice":2280},
+            {"date":"2026-06-15","arrivalQuantity":8500,"soldQuantity":7100,"modalPrice":2310},
+            {"date":"2026-06-22","arrivalQuantity":8000,"soldQuantity":7000,"modalPrice":2350}
+          ]
+        },
+        {
+          "crop": "Rice",
+          "observations": [
+            {"date":"2026-06-01","arrivalQuantity":12000,"soldQuantity":9600,"modalPrice":2350},
+            {"date":"2026-06-08","arrivalQuantity":11800,"soldQuantity":9500,"modalPrice":2380},
+            {"date":"2026-06-15","arrivalQuantity":11400,"soldQuantity":9400,"modalPrice":2420},
+            {"date":"2026-06-22","arrivalQuantity":10800,"soldQuantity":9300,"modalPrice":2460}
+          ]
+        },
+        {
+          "crop": "Maize",
+          "observations": [
+            {"date":"2026-06-01","arrivalQuantity":14000,"soldQuantity":11900,"modalPrice":1900},
+            {"date":"2026-06-08","arrivalQuantity":13700,"soldQuantity":11800,"modalPrice":1930},
+            {"date":"2026-06-15","arrivalQuantity":13300,"soldQuantity":11600,"modalPrice":1970},
+            {"date":"2026-06-22","arrivalQuantity":12800,"soldQuantity":11500,"modalPrice":2010}
+          ]
+        },
+        {
+          "crop": "Sugarcane",
+          "observations": [
+            {"date":"2026-06-01","arrivalQuantity":8000,"soldQuantity":6500,"modalPrice":3300},
+            {"date":"2026-06-08","arrivalQuantity":7800,"soldQuantity":6400,"modalPrice":3340},
+            {"date":"2026-06-15","arrivalQuantity":7500,"soldQuantity":6300,"modalPrice":3370},
+            {"date":"2026-06-22","arrivalQuantity":7200,"soldQuantity":6200,"modalPrice":3410}
+          ]
+        },
+        {
+          "crop": "Potato",
+          "observations": [
+            {"date":"2026-06-01","arrivalQuantity":8500,"soldQuantity":6800,"modalPrice":1750},
+            {"date":"2026-06-08","arrivalQuantity":8200,"soldQuantity":6700,"modalPrice":1780},
+            {"date":"2026-06-15","arrivalQuantity":7900,"soldQuantity":6600,"modalPrice":1810},
+            {"date":"2026-06-22","arrivalQuantity":7500,"soldQuantity":6500,"modalPrice":1850}
+          ]
+        },
+        {
+          "crop": "Jute",
+          "observations": [
+            {"date":"2026-06-01","arrivalQuantity":5000,"soldQuantity":4100,"modalPrice":5200},
+            {"date":"2026-06-08","arrivalQuantity":4800,"soldQuantity":4000,"modalPrice":5250},
+            {"date":"2026-06-15","arrivalQuantity":4600,"soldQuantity":3950,"modalPrice":5310},
+            {"date":"2026-06-22","arrivalQuantity":4300,"soldQuantity":3900,"modalPrice":5380}
+          ]
+        },
+        {
+          "crop": "Makhana",
+          "observations": [
+            {"date":"2026-06-01","arrivalQuantity":3000,"soldQuantity":2700,"modalPrice":9500},
+            {"date":"2026-06-08","arrivalQuantity":2900,"soldQuantity":2650,"modalPrice":9600},
+            {"date":"2026-06-15","arrivalQuantity":2750,"soldQuantity":2600,"modalPrice":9750},
+            {"date":"2026-06-22","arrivalQuantity":2500,"soldQuantity":2450,"modalPrice":9950}
+          ]
+        },
+        {
+          "crop": "Mango",
+          "observations": [
+            {"date":"2026-06-01","arrivalQuantity":10000,"soldQuantity":8200,"modalPrice":4200},
+            {"date":"2026-06-08","arrivalQuantity":9800,"soldQuantity":8150,"modalPrice":4250},
+            {"date":"2026-06-15","arrivalQuantity":9500,"soldQuantity":8100,"modalPrice":4320},
+            {"date":"2026-06-22","arrivalQuantity":9000,"soldQuantity":8050,"modalPrice":4400}
+          ]
+        },
+        {
+          "crop": "Litchi",
+          "observations": [
+            {"date":"2026-06-01","arrivalQuantity":6000,"soldQuantity":5400,"modalPrice":6500},
+            {"date":"2026-06-08","arrivalQuantity":5800,"soldQuantity":5300,"modalPrice":6600},
+            {"date":"2026-06-15","arrivalQuantity":5500,"soldQuantity":5200,"modalPrice":6750},
+            {"date":"2026-06-22","arrivalQuantity":5100,"soldQuantity":5000,"modalPrice":6950}
+          ]
+        },
+        {
+          "crop": "Gram",
+          "observations": [
+            {"date":"2026-06-01","arrivalQuantity":7000,"soldQuantity":5600,"modalPrice":5800},
+            {"date":"2026-06-08","arrivalQuantity":6800,"soldQuantity":5500,"modalPrice":5840},
+            {"date":"2026-06-15","arrivalQuantity":6500,"soldQuantity":5400,"modalPrice":5890},
+            {"date":"2026-06-22","arrivalQuantity":6200,"soldQuantity":5350,"modalPrice":5950}
+          ]
+        },
+        {
+          "crop": "Lentil",
+          "observations": [
+            {"date":"2026-06-01","arrivalQuantity":5000,"soldQuantity":4000,"modalPrice":6200},
+            {"date":"2026-06-08","arrivalQuantity":4800,"soldQuantity":3950,"modalPrice":6250},
+            {"date":"2026-06-15","arrivalQuantity":4600,"soldQuantity":3900,"modalPrice":6320},
+            {"date":"2026-06-22","arrivalQuantity":4300,"soldQuantity":3850,"modalPrice":6400}
+          ]
+        },
+        {
+          "crop": "Moong",
+          "observations": [
+            {"date":"2026-06-01","arrivalQuantity":4000,"soldQuantity":3200,"modalPrice":7000},
+            {"date":"2026-06-08","arrivalQuantity":3900,"soldQuantity":3150,"modalPrice":7050},
+            {"date":"2026-06-15","arrivalQuantity":3700,"soldQuantity":3100,"modalPrice":7120},
+            {"date":"2026-06-22","arrivalQuantity":3500,"soldQuantity":3050,"modalPrice":7200}
+          ]
+        },
+        {
+          "crop": "Arhar",
+          "observations": [
+            {"date":"2026-06-01","arrivalQuantity":4500,"soldQuantity":3600,"modalPrice":6800},
+            {"date":"2026-06-08","arrivalQuantity":4300,"soldQuantity":3500,"modalPrice":6850},
+            {"date":"2026-06-15","arrivalQuantity":4100,"soldQuantity":3450,"modalPrice":6920},
+            {"date":"2026-06-22","arrivalQuantity":3900,"soldQuantity":3400,"modalPrice":7000}
+          ]
+        },
+        {
+          "crop": "Mustard",
+          "observations": [
+            {"date":"2026-06-01","arrivalQuantity":7000,"soldQuantity":5500,"modalPrice":5300},
+            {"date":"2026-06-08","arrivalQuantity":6800,"soldQuantity":5400,"modalPrice":5350},
+            {"date":"2026-06-15","arrivalQuantity":6500,"soldQuantity":5300,"modalPrice":5400},
+            {"date":"2026-06-22","arrivalQuantity":6200,"soldQuantity":5250,"modalPrice":5460}
+          ]
+        },
+        {
+          "crop": "Groundnut",
+          "observations": [
+            {"date":"2026-06-01","arrivalQuantity":5000,"soldQuantity":3900,"modalPrice":5600},
+            {"date":"2026-06-08","arrivalQuantity":4800,"soldQuantity":3800,"modalPrice":5650},
+            {"date":"2026-06-15","arrivalQuantity":4600,"soldQuantity":3750,"modalPrice":5720},
+            {"date":"2026-06-22","arrivalQuantity":4300,"soldQuantity":3700,"modalPrice":5800}
+          ]
+        }
+      ]
+    },
+    {
+      "state": "Uttar Pradesh",
+      "crops": [
+        {
+          "crop": "Wheat",
+          "observations": [
+            {"date":"2026-06-01","arrivalQuantity":15000,"soldQuantity":12000,"modalPrice":2200},
+            {"date":"2026-06-08","arrivalQuantity":14700,"soldQuantity":11900,"modalPrice":2240},
+            {"date":"2026-06-15","arrivalQuantity":14200,"soldQuantity":11800,"modalPrice":2280},
+            {"date":"2026-06-22","arrivalQuantity":13600,"soldQuantity":11700,"modalPrice":2330}
+          ]
+        },
+        {
+          "crop": "Rice",
+          "observations": [
+            {"date":"2026-06-01","arrivalQuantity":16000,"soldQuantity":12800,"modalPrice":2350},
+            {"date":"2026-06-08","arrivalQuantity":15700,"soldQuantity":12700,"modalPrice":2390},
+            {"date":"2026-06-15","arrivalQuantity":15300,"soldQuantity":12600,"modalPrice":2430},
+            {"date":"2026-06-22","arrivalQuantity":14800,"soldQuantity":12500,"modalPrice":2480}
+          ]
+        },
+        {
+          "crop": "Maize",
+          "observations": [
+            {"date":"2026-06-01","arrivalQuantity":9000,"soldQuantity":7200,"modalPrice":1950},
+            {"date":"2026-06-08","arrivalQuantity":8800,"soldQuantity":7100,"modalPrice":1980},
+            {"date":"2026-06-15","arrivalQuantity":8500,"soldQuantity":7000,"modalPrice":2020},
+            {"date":"2026-06-22","arrivalQuantity":8200,"soldQuantity":6950,"modalPrice":2060}
+          ]
+        },
+        {
+          "crop": "Sugarcane",
+          "observations": [
+            {"date":"2026-06-01","arrivalQuantity":18000,"soldQuantity":14400,"modalPrice":3250},
+            {"date":"2026-06-08","arrivalQuantity":17600,"soldQuantity":14200,"modalPrice":3290},
+            {"date":"2026-06-15","arrivalQuantity":17100,"soldQuantity":14000,"modalPrice":3330},
+            {"date":"2026-06-22","arrivalQuantity":16500,"soldQuantity":13800,"modalPrice":3380}
+          ]
+        },
+        {
+          "crop": "Potato",
+          "observations": [
+            {"date":"2026-06-01","arrivalQuantity":15000,"soldQuantity":12000,"modalPrice":1700},
+            {"date":"2026-06-08","arrivalQuantity":14700,"soldQuantity":11800,"modalPrice":1740},
+            {"date":"2026-06-15","arrivalQuantity":14200,"soldQuantity":11600,"modalPrice":1780},
+            {"date":"2026-06-22","arrivalQuantity":13600,"soldQuantity":11400,"modalPrice":1830}
+          ]
+        },
+        {
+          "crop": "Cotton",
+          "observations": [
+            {"date":"2026-06-01","arrivalQuantity":4500,"soldQuantity":3500,"modalPrice":6700},
+            {"date":"2026-06-08","arrivalQuantity":4400,"soldQuantity":3450,"modalPrice":6750},
+            {"date":"2026-06-15","arrivalQuantity":4200,"soldQuantity":3400,"modalPrice":6820},
+            {"date":"2026-06-22","arrivalQuantity":4000,"soldQuantity":3350,"modalPrice":6900}
+          ]
+        },
+        {
+          "crop": "Jute",
+          "observations": [
+            {"date":"2026-06-01","arrivalQuantity":3500,"soldQuantity":2800,"modalPrice":5100},
+            {"date":"2026-06-08","arrivalQuantity":3400,"soldQuantity":2750,"modalPrice":5150},
+            {"date":"2026-06-15","arrivalQuantity":3200,"soldQuantity":2700,"modalPrice":5220},
+            {"date":"2026-06-22","arrivalQuantity":3000,"soldQuantity":2650,"modalPrice":5300}
+          ]
+        },
+        {
+          "crop": "Mango",
+          "observations": [
+            {"date":"2026-06-01","arrivalQuantity":15000,"soldQuantity":12000,"modalPrice":4000},
+            {"date":"2026-06-08","arrivalQuantity":14700,"soldQuantity":11900,"modalPrice":4050},
+            {"date":"2026-06-15","arrivalQuantity":14200,"soldQuantity":11800,"modalPrice":4120},
+            {"date":"2026-06-22","arrivalQuantity":13600,"soldQuantity":11700,"modalPrice":4200}
+          ]
+        },
+        {
+          "crop": "Litchi",
+          "observations": [
+            {"date":"2026-06-01","arrivalQuantity":4000,"soldQuantity":3200,"modalPrice":6000},
+            {"date":"2026-06-08","arrivalQuantity":3900,"soldQuantity":3150,"modalPrice":6100},
+            {"date":"2026-06-15","arrivalQuantity":3700,"soldQuantity":3050,"modalPrice":6200},
+            {"date":"2026-06-22","arrivalQuantity":3500,"soldQuantity":3000,"modalPrice":6350}
+          ]
+        },
+        {
+          "crop": "Gram",
+          "observations": [
+            {"date":"2026-06-01","arrivalQuantity":8000,"soldQuantity":6400,"modalPrice":5700},
+            {"date":"2026-06-08","arrivalQuantity":7800,"soldQuantity":6300,"modalPrice":5750},
+            {"date":"2026-06-15","arrivalQuantity":7500,"soldQuantity":6200,"modalPrice":5810},
+            {"date":"2026-06-22","arrivalQuantity":7200,"soldQuantity":6150,"modalPrice":5890}
+          ]
+        },
+        {
+          "crop": "Lentil",
+          "observations": [
+            {"date":"2026-06-01","arrivalQuantity":6500,"soldQuantity":5200,"modalPrice":6100},
+            {"date":"2026-06-08","arrivalQuantity":6300,"soldQuantity":5100,"modalPrice":6150},
+            {"date":"2026-06-15","arrivalQuantity":6000,"soldQuantity":5000,"modalPrice":6220},
+            {"date":"2026-06-22","arrivalQuantity":5700,"soldQuantity":4950,"modalPrice":6300}
+          ]
+        },
+        {
+          "crop": "Moong",
+          "observations": [
+            {"date":"2026-06-01","arrivalQuantity":4500,"soldQuantity":3600,"modalPrice":6900},
+            {"date":"2026-06-08","arrivalQuantity":4300,"soldQuantity":3500,"modalPrice":6970},
+            {"date":"2026-06-15","arrivalQuantity":4100,"soldQuantity":3450,"modalPrice":7050},
+            {"date":"2026-06-22","arrivalQuantity":3900,"soldQuantity":3400,"modalPrice":7150}
+          ]
+        },
+        {
+          "crop": "Arhar",
+          "observations": [
+            {"date":"2026-06-01","arrivalQuantity":6000,"soldQuantity":4800,"modalPrice":6700},
+            {"date":"2026-06-08","arrivalQuantity":5800,"soldQuantity":4700,"modalPrice":6780},
+            {"date":"2026-06-15","arrivalQuantity":5500,"soldQuantity":4600,"modalPrice":6850},
+            {"date":"2026-06-22","arrivalQuantity":5200,"soldQuantity":4550,"modalPrice":6950}
+          ]
+        },
+        {
+          "crop": "Mustard",
+          "observations": [
+            {"date":"2026-06-01","arrivalQuantity":9000,"soldQuantity":7200,"modalPrice":5250},
+            {"date":"2026-06-08","arrivalQuantity":8800,"soldQuantity":7100,"modalPrice":5300},
+            {"date":"2026-06-15","arrivalQuantity":8500,"soldQuantity":7000,"modalPrice":5360},
+            {"date":"2026-06-22","arrivalQuantity":8200,"soldQuantity":6900,"modalPrice":5430}
+          ]
+        },
+        {
+          "crop": "Sunflower",
+          "observations": [
+            {"date":"2026-06-01","arrivalQuantity":4000,"soldQuantity":3100,"modalPrice":5650},
+            {"date":"2026-06-08","arrivalQuantity":3900,"soldQuantity":3050,"modalPrice":5700},
+            {"date":"2026-06-15","arrivalQuantity":3700,"soldQuantity":3000,"modalPrice":5770},
+            {"date":"2026-06-22","arrivalQuantity":3500,"soldQuantity":2950,"modalPrice":5850}
+          ]
+        },
+        {
+          "crop": "Groundnut",
+          "observations": [
+            {"date":"2026-06-01","arrivalQuantity":6000,"soldQuantity":4700,"modalPrice":5500},
+            {"date":"2026-06-08","arrivalQuantity":5800,"soldQuantity":4600,"modalPrice":5560},
+            {"date":"2026-06-15","arrivalQuantity":5500,"soldQuantity":4500,"modalPrice":5630},
+            {"date":"2026-06-22","arrivalQuantity":5200,"soldQuantity":4450,"modalPrice":5720}
+          ]
+        }
+      ]
+    }
+  ]
+}
