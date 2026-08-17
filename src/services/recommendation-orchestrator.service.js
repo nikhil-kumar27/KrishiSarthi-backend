@@ -10,32 +10,22 @@
  *
  */
 
-const {
-  AppError,
-} = require('../middleware/error-handler');
+const { AppError } = require("../middleware/error-handler");
+
+const { normalizeCropName } = require("../utils/crop-normalizer");
 
 const {
-  normalizeCropName,
-} = require('../utils/crop-normalizer');
-
-const {
-  getRecommendations:
-    getMember12Recommendations,
-} = require('./crop-recommendation.service');
-
+  getRecommendations: getMember12Recommendations,
+} = require("./crop-recommendation.service");
 
 // Member 3 remains an ES module, so CommonJS loads it with dynamic import().
 
 async function loadMember3MarketScoreFunction() {
-
   const module =
-    await import(
-      '../market-engine/services/market-score.integration.service.js'
-    );
+    await import("../market-engine/services/market-score.integration.service.js");
 
   return module.getMarketScore;
 }
-
 
 // ==========================================================
 // Recommendation Orchestrator
@@ -47,12 +37,8 @@ function createRecommendationOrchestrator({
   scoringService,
   rankingService,
 }) {
-
-
   async function getRecommendations(request) {
-
     const {
-
       farmSize,
 
       unit,
@@ -66,9 +52,7 @@ function createRecommendationOrchestrator({
       budget,
 
       season,
-
     } = request;
-
 
     // ==================================================
     // STEP 1
@@ -81,41 +65,30 @@ function createRecommendationOrchestrator({
     const member12Response = await getMember12Recommendations(
       state,
       district,
-      season
+      season,
     );
-
 
     // ==================================================
     // Validate Member 1 & 2 result
     // ==================================================
 
-    if (
-      member12Response === null ||
-      member12Response === undefined
-    ) {
-
+    if (member12Response === null || member12Response === undefined) {
       throw new AppError(
-
-        'Member 1&2 found no recommendations for the given state, district, and season',
+        "Member 1&2 found no recommendations for the given state, district, and season",
 
         404,
 
         {
-
-          upstream:
-            'member12',
+          upstream: "member12",
 
           state,
 
           district,
 
           season,
-
-        }
-
+        },
       );
     }
-
 
     // Member 12 production service returns an array.
     //
@@ -127,151 +100,85 @@ function createRecommendationOrchestrator({
 
     let rawRecommendedCrops;
 
-
-    if (
-      Array.isArray(member12Response)
-    ) {
-
-      rawRecommendedCrops =
-        member12Response;
-
-    } else if (
-      Array.isArray(
-        member12Response.recommendedCrops
-      )
-    ) {
-
-      rawRecommendedCrops =
-        member12Response.recommendedCrops;
-
+    if (Array.isArray(member12Response)) {
+      rawRecommendedCrops = member12Response;
+    } else if (Array.isArray(member12Response.recommendedCrops)) {
+      rawRecommendedCrops = member12Response.recommendedCrops;
     } else {
-
       throw new AppError(
-
-        'Member 1&2 returned an unexpected response format',
+        "Member 1&2 returned an unexpected response format",
 
         502,
 
         {
+          upstream: "member12",
 
-          upstream:
-            'member12',
-
-          expected:
-            'crop array or { recommendedCrops: [] }',
-
-        }
-
+          expected: "crop array or { recommendedCrops: [] }",
+        },
       );
     }
 
-
-    if (
-      rawRecommendedCrops.length === 0
-    ) {
-
+    if (rawRecommendedCrops.length === 0) {
       throw new AppError(
-
-        'Member 1&2 returned no recommended crops',
+        "Member 1&2 returned no recommended crops",
 
         502,
 
         {
-
-          upstream:
-            'member12',
-
-        }
-
+          upstream: "member12",
+        },
       );
     }
-
 
     // ==================================================
     // STEP 2
     // Normalize crop list
     // ==================================================
 
-    const recommendedCrops =
-      rawRecommendedCrops
+    const recommendedCrops = rawRecommendedCrops
 
-        .map((item) => {
+      .map((item) => {
+        if (!item || typeof item !== "object") {
+          return null;
+        }
 
-          if (
-            !item ||
-            typeof item !== 'object'
-          ) {
+        const incomingCrop = item.commonName || item.crop;
 
-            return null;
-          }
+        if (
+          typeof incomingCrop !== "string" ||
+          incomingCrop.trim().length === 0
+        ) {
+          return null;
+        }
 
+        const crop = normalizeCropName(incomingCrop) || incomingCrop.trim();
 
-          const incomingCrop =
-            item.commonName ||
-            item.crop;
+        const suitabilityScore =
+          item.score !== undefined ? item.score : item.suitabilityScore;
 
+        return {
+          crop,
 
-          if (
-            typeof incomingCrop !== 'string' ||
-            incomingCrop.trim().length === 0
-          ) {
+          suitabilityScore:
+            suitabilityScore === null || suitabilityScore === undefined
+              ? null
+              : suitabilityScore,
+        };
+      })
 
-            return null;
-          }
+      .filter(Boolean);
 
-
-          const crop =
-            normalizeCropName(
-              incomingCrop
-            ) ||
-            incomingCrop.trim();
-
-
-          const suitabilityScore =
-            item.score !== undefined
-              ? item.score
-              : item.suitabilityScore;
-
-
-          return {
-
-            crop,
-
-            suitabilityScore:
-              suitabilityScore === null ||
-              suitabilityScore === undefined
-
-                ? null
-
-                : suitabilityScore,
-
-          };
-
-        })
-
-        .filter(Boolean);
-
-
-    if (
-      recommendedCrops.length === 0
-    ) {
-
+    if (recommendedCrops.length === 0) {
       throw new AppError(
-
-        'Member 1&2 returned no valid crop names',
+        "Member 1&2 returned no valid crop names",
 
         502,
 
         {
-
-          upstream:
-            'member12',
-
-        }
-
+          upstream: "member12",
+        },
       );
     }
-
 
     // ==================================================
     // Remove duplicate crops
@@ -279,36 +186,19 @@ function createRecommendationOrchestrator({
 
     const uniqueRecommendedCrops = [];
 
-    const seenCrops =
-      new Set();
+    const seenCrops = new Set();
 
+    for (const item of recommendedCrops) {
+      const key = item.crop.trim().toLowerCase();
 
-    for (
-      const item
-      of recommendedCrops
-    ) {
-
-      const key =
-        item.crop
-          .trim()
-          .toLowerCase();
-
-
-      if (
-        seenCrops.has(key)
-      ) {
-
+      if (seenCrops.has(key)) {
         continue;
       }
 
-
       seenCrops.add(key);
 
-      uniqueRecommendedCrops.push(
-        item
-      );
+      uniqueRecommendedCrops.push(item);
     }
-
 
     // ==================================================
     // STEP 3
@@ -329,114 +219,78 @@ function createRecommendationOrchestrator({
     //   crops
     // ==================================================
 
-    const cropNames =
-      uniqueRecommendedCrops.map(
-        item => item.crop
-      );
+    const cropNames = uniqueRecommendedCrops.map((item) => item.crop);
 
+    function normalizeStateForMember3(state) {
+      if (typeof state !== "string") {
+        return state;
+      }
+
+      return state
+        .trim()
+        .toLowerCase()
+        .replace(/[-_]+/g, " ")
+        .replace(/\s+/g, " ");
+    }
 
     const getMarketScore = await loadMember3MarketScoreFunction();
 
-    const member3Response = await getMarketScore({
-      state,
-      district,
-      crops: cropNames,
-    });
+    getMarketScore(normalizeStateForMember3(state), district, season, crop);
 
     // ==================================================
     // Validate Member 3 response
     // ==================================================
 
-    if (
-      !member3Response ||
-      member3Response.success === false
-    ) {
-
+    if (!member3Response || member3Response.success === false) {
       throw new AppError(
-
-        'Member 3 returned no valid response',
+        "Member 3 returned no valid response",
 
         502,
 
         {
-
-          upstream:
-            'member3',
-
-        }
-
+          upstream: "member3",
+        },
       );
     }
 
-
-    if (
-      !Array.isArray(
-        member3Response.marketScores
-      )
-    ) {
-
+    if (!Array.isArray(member3Response.marketScores)) {
       throw new AppError(
-
-        'Member 3 returned an unexpected response format',
+        "Member 3 returned an unexpected response format",
 
         502,
 
         {
+          upstream: "member3",
 
-          upstream:
-            'member3',
-
-          expected:
-            '{ success, state, marketScores: [] }',
-
-        }
-
+          expected: "{ success, state, marketScores: [] }",
+        },
       );
     }
-
 
     // ==================================================
     // STEP 4
     // Store market scores
     // ==================================================
 
-    const marketScores =
-      new Map();
+    const marketScores = new Map();
 
-
-    for (
-      const item
-      of member3Response.marketScores
-    ) {
-
+    for (const item of member3Response.marketScores) {
       if (
         !item ||
-        typeof item.crop !== 'string' ||
-        !Number.isFinite(
-          item.marketScore
-        )
+        typeof item.crop !== "string" ||
+        !Number.isFinite(item.marketScore)
       ) {
-
         continue;
       }
 
-
-      const cropName =
-        normalizeCropName(
-          item.crop
-        ) ||
-        item.crop.trim();
-
+      const cropName = normalizeCropName(item.crop) || item.crop.trim();
 
       marketScores.set(
-
         cropName.toLowerCase(),
 
-        item.marketScore
-
+        item.marketScore,
       );
     }
-
 
     // ==================================================
     // STEP 5
@@ -447,146 +301,99 @@ function createRecommendationOrchestrator({
 
     const skippedCrops = [];
 
+    for (const item of uniqueRecommendedCrops) {
+      const crop = item.crop;
 
-    for (
-      const item
-      of uniqueRecommendedCrops
-    ) {
-
-      const crop =
-        item.crop;
-
-
-      const cropKey =
-        crop.toLowerCase();
-
+      const cropKey = crop.toLowerCase();
 
       // ----------------------------------------------
       // Market score
       // ----------------------------------------------
 
-      const marketScore =
-        marketScores.get(
-          cropKey
-        );
-
+      const marketScore = marketScores.get(cropKey);
 
       // Never invent marketScore = 0.
       //
       // If Member 3 does not have market data for a
       // crop/state combination, report it as skipped.
 
-      if (
-        marketScore === undefined
-      ) {
-
+      if (marketScore === undefined) {
         skippedCrops.push({
-
           crop,
 
-          reason:
-            'Market score unavailable for this state/crop combination',
-
+          reason: "Market score unavailable for this state/crop combination",
         });
 
         continue;
       }
 
-
       // ----------------------------------------------
       // Cultivation cost
       // ----------------------------------------------
 
-      const costResult =
-        cultivationCostService
-          .calculateCostForCrop({
+      const costResult = cultivationCostService.calculateCostForCrop({
+        crop,
 
-            crop,
+        state,
 
-            state,
+        farmSize,
 
-            farmSize,
-
-            unit,
-
-          });
-
+        unit,
+      });
 
       // ----------------------------------------------
       // Budget score
       // ----------------------------------------------
 
-      const budgetResult =
-        budgetService.evaluate(
+      const budgetResult = budgetService.evaluate(
+        budget,
 
-          budget,
-
-          costResult.total
-
-        );
-
+        costResult.total,
+      );
 
       // ----------------------------------------------
       // Final score
       // ----------------------------------------------
 
-      const scoreResult =
-        scoringService.calculateFinalScore(
+      const scoreResult = scoringService.calculateFinalScore(
+        item.suitabilityScore,
 
-          item.suitabilityScore,
+        marketScore,
 
-          marketScore,
-
-          budgetResult.budgetScore
-
-        );
-
+        budgetResult.budgetScore,
+      );
 
       // ----------------------------------------------
       // Result
       // ----------------------------------------------
 
       const cropResult = {
-
         crop,
 
         marketScore,
 
-        budgetScore:
-          budgetResult.budgetScore,
+        budgetScore: budgetResult.budgetScore,
 
-        finalScore:
-          scoreResult.finalScore,
+        finalScore: scoreResult.finalScore,
 
-        scoringCase:
-          scoreResult.scoringCase,
+        scoringCase: scoreResult.scoringCase,
 
-        affordable:
-          budgetResult.affordable,
+        affordable: budgetResult.affordable,
 
-        status:
-          budgetResult.status,
+        status: budgetResult.status,
 
         cultivationCost: {
-
           ...costResult.costBreakdown,
 
-          total:
-            costResult.total,
-
+          total: costResult.total,
         },
 
-        budgetDetails:
-          budgetResult.budgetDetails,
+        budgetDetails: budgetResult.budgetDetails,
 
-        dataSource:
-          costResult.dataSource,
+        dataSource: costResult.dataSource,
 
-        dataLevel:
-          costResult.dataLevel,
-
+        dataLevel: costResult.dataLevel,
       };
-
 
       // Only include suitability score when
       // Member 1&2 actually provided it.
@@ -595,80 +402,55 @@ function createRecommendationOrchestrator({
         item.suitabilityScore !== null &&
         item.suitabilityScore !== undefined
       ) {
-
-        cropResult.suitabilityScore =
-          item.suitabilityScore;
-
+        cropResult.suitabilityScore = item.suitabilityScore;
       }
 
+      cropResult.reason = buildReason(
+        crop,
 
-      cropResult.reason =
-        buildReason(
+        item.suitabilityScore,
 
-          crop,
+        marketScore,
 
-          item.suitabilityScore,
+        budgetResult.budgetScore,
 
-          marketScore,
+        budgetResult.affordable,
 
-          budgetResult.budgetScore,
-
-          budgetResult.affordable,
-
-          scoreResult.scoringCase
-
-        );
-
-
-      scoredCrops.push(
-        cropResult
+        scoreResult.scoringCase,
       );
-    }
 
+      scoredCrops.push(cropResult);
+    }
 
     // ==================================================
     // STEP 6
     // Ensure at least one crop can be scored
     // ==================================================
 
-    if (
-      scoredCrops.length === 0
-    ) {
-
+    if (scoredCrops.length === 0) {
       throw new AppError(
-
-        'No recommended crop has sufficient market data to produce a final recommendation',
+        "No recommended crop has sufficient market data to produce a final recommendation",
 
         422,
 
         {
-
-          upstream:
-            'member3',
+          upstream: "member3",
 
           state,
 
-          crops:
-            cropNames,
+          crops: cropNames,
 
           skippedCrops,
-
-        }
-
+        },
       );
     }
-
 
     // ==================================================
     // STEP 7
     // Rank
     // ==================================================
 
-    const rankedCrops =
-      rankingService.rank(
-        scoredCrops
-      );
-
+    const rankedCrops = rankingService.rank(scoredCrops);
 
     // ==================================================
     // STEP 8
@@ -676,11 +458,9 @@ function createRecommendationOrchestrator({
     // ==================================================
 
     return {
-
       success: true,
 
       input: {
-
         farmSize,
 
         unit,
@@ -689,40 +469,31 @@ function createRecommendationOrchestrator({
 
         district,
 
-        village:
-          village || null,
+        village: village || null,
 
         budget,
 
         season,
-
       },
 
       budget,
 
-      recommendations:
-        rankedCrops,
+      recommendations: rankedCrops,
 
       skippedCrops,
-
     };
   }
 
-
   return {
-
     getRecommendations,
-
   };
 }
-
 
 // ==========================================================
 // Explanation generator
 // ==========================================================
 
 function buildReason(
-
   crop,
 
   suitabilityScore,
@@ -733,49 +504,27 @@ function buildReason(
 
   affordable,
 
-  scoringCase
-
+  scoringCase,
 ) {
+  const budgetMessage = affordable
+    ? "fits within the available budget"
+    : "exceeds the available budget";
 
-  const budgetMessage =
-    affordable
-
-      ? 'fits within the available budget'
-
-      : 'exceeds the available budget';
-
-
-  if (
-    scoringCase === 1
-  ) {
-
+  if (scoringCase === 1) {
     return (
-
       `${crop} scores ${suitabilityScore} on suitability, ` +
-
       `${marketScore} on market outlook, ` +
-
       `and ${budgetMessage} ` +
-
       `(budget score ${budgetScore}).`
-
     );
   }
 
-
   return (
-
     `${crop} scores ${marketScore} on market outlook ` +
-
     `and ${budgetMessage} ` +
-
     `(budget score ${budgetScore}). ` +
-
     `No suitability score was provided by Member 1&2.`
-
   );
 }
 
-
-module.exports =
-  createRecommendationOrchestrator;
+module.exports = createRecommendationOrchestrator;
