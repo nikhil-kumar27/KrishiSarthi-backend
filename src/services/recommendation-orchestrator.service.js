@@ -235,7 +235,13 @@ function createRecommendationOrchestrator({
 
     const getMarketScore = await loadMember3MarketScoreFunction();
 
-    getMarketScore(normalizeStateForMember3(state), district, season, crop);
+    const normalizedStateForMember3 = normalizeStateForMember3(state);
+
+    const member3Response = await getMarketScore(
+      normalizedStateForMember3,
+      district,
+      cropNames,
+    );
 
     // ==================================================
     // Validate Member 3 response
