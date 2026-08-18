@@ -237,11 +237,11 @@ function createRecommendationOrchestrator({
 
     const normalizedStateForMember3 = normalizeStateForMember3(state);
 
-    const member3Response = await getMarketScore(
-      normalizedStateForMember3,
+    const member3Response = await getMarketScore({
+      state: normalizedStateForMember3,
       district,
-      cropNames,
-    );
+      crops: cropNames,
+    });
 
     // ==================================================
     // Validate Member 3 response
